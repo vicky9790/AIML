@@ -7,6 +7,10 @@ app = FastAPI()
 model = joblib.load("model.pkl")
 scaler = joblib.load("scaler.pkl")
 
+@app.get("/")
+def home():
+    return {"message": "ML Model API is running"}
+
 @app.post("/predict")
 def predict(data: list):
     data = np.array(data).reshape(1, -1)
